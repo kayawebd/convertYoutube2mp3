@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Convert YouTube videos to MP3 easily with our online tool.">
+  <link rel="shortcut icon" type="image/png" href="/img/yt.png" />
+  <link rel="stylesheet" href="/css/styles.css">
+  <title>YouTube 2 MP3 Converter</title>
+</head>
+
+<body>
+
+  <main class="main">
+    <div class="converter-wrap">
+      <section class="converter">
+        <form action="/CONVERT" method="POST" class="converter__form" id="convert-form">
+          <div class="converter__title">
+            <svg viewBox="0 -38 256 256" version="1.1" xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid">
+              <g>
+                <path
+                  d="M250.346231,28.0746923 C247.358133,17.0320558 238.732098,8.40602109 227.689461,5.41792308 C207.823743,0 127.868333,0 127.868333,0 C127.868333,0 47.9129229,0.164179487 28.0472049,5.58210256 C17.0045684,8.57020058 8.37853373,17.1962353 5.39043571,28.2388718 C-0.618533519,63.5374615 -2.94988224,117.322662 5.5546152,151.209308 C8.54271322,162.251944 17.1687479,170.877979 28.2113844,173.866077 C48.0771024,179.284 128.032513,179.284 128.032513,179.284 C128.032513,179.284 207.987923,179.284 227.853641,173.866077 C238.896277,170.877979 247.522312,162.251944 250.51041,151.209308 C256.847738,115.861464 258.801474,62.1091 250.346231,28.0746923 Z"
+                  fill="#FF0000">
+
+                </path>
+                <polygon fill="#FFFFFF" points="102.420513 128.06 168.749025 89.642 102.420513 51.224">
+
+                </polygon>
+              </g>
+            </svg>
+            <h2 class="converter__heading">YouTube Video to MP3</h2>
+          </div>
+
+          <label for="videoId" class="converter__label screen-reader-only">Enter YouTube Video ID</label>
+          <div class="converter__input-group">
+            <input type="text" id="videoId" name="videoId" placeholder="Youtube Video ID" required
+              class="converter__input">
+            <button id="submit-btn" type="submit" class="converter__button">Convert</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="status">
+        <% if (typeof success !="undefined" && success) { %>
+          <div class="status__success">
+            <h3 class="status__title">Conversion Successful!</h3>
+            <div class="status__info">
+              <ul class="status__list">
+                <li class="status__list-item">
+                  <span class="status__list-item-label">Title:</span>
+                  <span class="status__list-item-value">
+                    <%= file_title %>
+                  </span>
+                </li>
+                <li class="status__list-item">
+                  <span class="status__list-item-label">File size:</span>
+                  <span class="status__list-item-value">
+                    <%= file_size %> Mb
+                  </span>
+                </li>
+                <li class="status__list-item">
+                  <span class="status__list-item-label">Duration:</span>
+                  <span class="status__list-item-value">
+                    <%= file_duration %>
+                  </span>
+                </li>
+              </ul>
+            </div>
+            <a href="<%= file_link %>" download class="status__download-link"><button id="download-btn"
+                class="status__button">Download MP3</button></a>
+          </div>
+          <% } else if (typeof success !=="undefined" && !success) { %>
+            <div class="status__error">
+              <p>Error: <%- message %>
+              </p>
+            </div>
+            <% } %>
+      </section>
+    </div>
+
+  </main>
+
+</body>
+
+</html>
